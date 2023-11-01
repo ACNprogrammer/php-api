@@ -1,0 +1,3 @@
+Requisição externa (envia o json)-> index.php (envia o json)-> UserController.php (envia email e senha)-> UserModel.php
+
+Connection (devolve a conexão)-> UserModel.php (devolve o resultado da tabela)-> UserController.php (devolve o json)-> index.php (devolve o json)

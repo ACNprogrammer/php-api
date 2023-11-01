@@ -1,0 +1,20 @@
+Rotas : 
+
+    fazer login
+
+    rota : http://localhost:8000/login
+
+    corpo esperado : 
+
+    {
+        "email" : "tocantins@email.com",
+        "password" : "12345678"
+    }
+
+    resposta : 
+
+    {
+        "name" : "tocantins",
+        "email" : "tocantins@email.com",
+        "password" : "12345678"
+    }

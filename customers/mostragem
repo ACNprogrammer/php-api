@@ -1,0 +1,56 @@
+<?php
+require 'function.php'; // Certifique-se de incluir o arquivo que contém suas funções
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $inputData = $_POST;
+
+    $storeCustomer = storeCustomer($inputData);
+
+    // Exibir mensagem de sucesso ou erro após o processamento
+    echo $storeCustomer;
+}
+
+// Aqui você pode adicionar o código para buscar e exibir a lista de consumidores
+// Você pode usar o código existente na função "getCustomerList" para fazer a consulta
+// e exibir os resultados em uma tabela HTML, por exemplo.
+// Lembre-se de que você precisa incluir a conexão com o banco de dados (dbcon.php) neste arquivo.
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gerenciamento de Consumidores</title>
+</head>
+<body>
+    <h1>Cadastrar Consumidor</h1>
+    <form action="processar.php" method="post">
+        <label for="nome">Nome:</label>
+        <input type="text" name="nome" required><br>
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" required><br>
+
+        <label for "telefone">Telefone:</label>
+        <input type="tel" name="telefone" required><br>
+
+        <label for="local">Local:</label>
+        <input type="text" name="local" required><br>
+
+        <label for="fauna">Fauna:</label>
+        <input type="text" name="fauna" required><br>
+
+        <label for="flora">Flora:</label>
+        <input type="text" name="flora" required><br>
+
+        <input type="submit" value="Cadastrar">
+    </form>
+
+    <h1>Lista de Consumidores</h1>
+    <?php
+    // Aqui você pode adicionar o código para buscar e exibir a lista de consumidores
+    // Você pode usar o código existente na função "getCustomerList" para fazer a consulta
+    // e exibir os resultados em uma tabela HTML, por exemplo.
+    // Lembre-se de que você precisa incluir a conexão com o banco de dados (dbcon.php) neste arquivo.
+    ?>
+</body>
+</html>

@@ -2,6 +2,79 @@
 
 require '../inc/dbcon.php';
 
+function error402($message)
+{
+    $data = [
+        'status' => 422,
+        'message' => $message,
+       ];
+       header("HTTP/1.0 422 Unprocessable Entity");
+       echo json_encode($data);
+       exit();
+}
+
+function storeCustomer($customerInput)
+{
+    global $conn;
+
+    $nome = mysqli_escape_string($conn, $customerInput['nome']);
+    $email = mysqli_escape_string($conn, $customerInput['email']);
+    $telefone = mysqli_escape_string($conn, $customerInput['telefone']);
+    $local = mysqli_escape_string($conn, $customerInput['local']);
+    $fauna = mysqli_escape_string($conn, $customerInput['fauna']);
+    $flora = mysqli_escape_string($conn, $customerInput['flora']);
+
+    if(empty(trim($nome)))
+    {
+        return error402('Digite seu nome:');
+    }
+    elseif(empty(trim($email)))
+    {
+        return error402('Digite seu email:');
+    }
+    elseif(empty(trim($telefone)))
+    {
+        return error402('Digite seu telefone:');
+    }
+    elseif(empty(trim($local)))
+    {
+        return error402('Digite o local onde você esteve:');
+    }
+    elseif(empty(trim($fauna)))
+    {
+        return error402('Digite a fauna do local:');
+    }
+    elseif(empty(trim($flora)))
+    {
+        return error402('Digite a flora do local:');
+    }
+    else
+    {
+        $query = "INSERT INTO customers (nome,email,telefone,local,fauna,flora) VALUES ('$nome','$email','$telefone','$local','$fauna','$flora')";
+        $result = mysqli_query($conn, $query);
+
+        if($result)
+        {
+            $data = [
+                'status' => 201,
+                'message' => 'Consumidor criado com sucesso',
+               ];
+               header("HTTP/1.0 201 Created");
+               return json_encode($data);
+        }
+        else
+        {
+            $data = [
+                'status' => 500,
+                'message' => 'Internal Server Error',
+               ];
+               header("HTTP/1.0 500 Internal Server Error");
+               return json_encode($data);
+        }
+    }
+}
+
+
 function getCustomerList()
 {
 
